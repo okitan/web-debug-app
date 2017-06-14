@@ -1,9 +1,12 @@
 require "rack/spyup"
 require "coderay" # TODO: make a PR
 
+require "logger"
 require "json"
 
-use Rack::SpyUp
+use Rack::SpyUp do |c|
+  c.logger = Logger.new(STDOUT)
+end
 
 run ->(env) {
   request = ::Rack::Request.new(env)
