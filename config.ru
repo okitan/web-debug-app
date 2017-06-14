@@ -18,6 +18,9 @@ run ->(env) {
         "URL"         => request.url,
         "HEADERS"     => request.env.select { |k, v| k.start_with?('HTTP_') },
         "PARAMS"      => (request.POST rescue nil),
+        "CLIENT_INFO" => {
+          "IP" => request.ip
+        },
       )
     ]
   ]
